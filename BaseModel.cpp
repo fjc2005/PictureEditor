@@ -3,7 +3,7 @@
 """Test BaseModel"""
 
 int main() {
-	const std::string MODEL_DIR = "E:\\Jupyter\\RCAN\\RCAN.pt";
+	const std::string MODEL_DIR = "options\\RCAN.pt";
 	BaseModel model(MODEL_DIR);
 
 	at::Tensor input = torch::ones({ 1, 3, 256, 256 });
