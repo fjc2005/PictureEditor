@@ -1,5 +1,7 @@
 #include "BaseModel.h"
 
+"""Test BaseModel"""
+
 int main() {
 	const std::string MODEL_DIR = "E:\\Jupyter\\RCAN\\RCAN.pt";
 	BaseModel model(MODEL_DIR);
