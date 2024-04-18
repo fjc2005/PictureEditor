@@ -1,21 +1,29 @@
+#include "stdafx.h"
 #include "BaseModel.h"
 
-"""Test BaseModel"""
 
-int main() {
-	const std::string MODEL_DIR = "options\\RCAN.pt";
-	BaseModel model(MODEL_DIR);
+BaseModel::BaseModel(std::string dir) {
+	this->MODEL_DIR = dir;
+	this->load();
+}
 
-	at::Tensor input = torch::ones({ 1, 3, 256, 256 });
-	at::Tensor output = model.forward(input);
-	std::cout << output.sizes();
-	/*torch::jit::script::Module model;
-	model = torch::jit::load(MODEL_DIR);
+std::string BaseModel::_MODEL_DIR() {
+	return this->MODEL_DIR;
+}
 
+void BaseModel::load() {
+	this->body = torch::jit::load(this->MODEL_DIR);
+}
+
+at::Tensor BaseModel::forward(at::Tensor input) {
 	std::vector<torch::jit::IValue> inputs;
-	inputs.push_back(torch::ones({ 1, 3, 128, 256 }));
+	inputs.push_back(input);
+	at::Tensor output = this->body.forward(inputs).toTensor();
 
-	at::Tensor output = model.forward(inputs).toTensor();*/
+	return output;
+}
 
-	return 0;
+at::Tensor BaseModel::forward(std::vector<torch::jit::IValue> inputs) {
+	at::Tensor output = this->body.forward(inputs).toTensor();
+	return output;
 }
