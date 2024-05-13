@@ -1,9 +1,12 @@
-#pragma once
+﻿#pragma once
+#define NOMINMAX
+#undef min
+#undef max
+#include <stdafx.h>
 
 class	 Image {
 private:
 	std::string image_dir;
-	void load();
 
 public:
 	Image();
@@ -13,6 +16,8 @@ public:
 	cv::Mat feature_mat;
 
 	std::string _image_dir();
+    void load();
+    void load(std::string);
 	void ToTensor();
 	void load_mat();
 	void imshow(std::string);

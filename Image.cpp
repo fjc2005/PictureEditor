@@ -1,13 +1,12 @@
+﻿#define NOMINMAX
+#undef min
+#undef max
 #include "stdafx.h"
 #include "Image.h"
 
 
 Image::Image() {
-	std::cout << "Please add an image file to read: " << std::endl;
-	std::string file_path;
-	std::cin >> file_path;
-	this->image_dir = file_path;
-	this->load();
+    ;
 }
 
 Image::Image(std::string dir) {
@@ -18,6 +17,11 @@ Image::Image(std::string dir) {
 void Image::load() {
 	this->load_mat();
 	this->ToTensor();
+}
+
+void Image::load(std::string path) {
+    this->image_dir = path;
+    this->load();
 }
 
 std::string Image::_image_dir() {

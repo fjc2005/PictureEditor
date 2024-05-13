@@ -1,3 +1,6 @@
+﻿#define NOMINMAX
+#undef min
+#undef max
 #include "stdafx.h"
 #include "BaseModel.h"
 

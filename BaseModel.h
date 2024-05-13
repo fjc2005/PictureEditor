@@ -1,10 +1,14 @@
-#pragma once
+﻿#pragma once
+#define NOMINMAX
+#undef min
+#undef max
+#include <stdafx.h>
 
 class BaseModel {
 private:
 	torch::jit::script::Module body;
 	std::string MODEL_DIR;
-	void load();
+    void load();
 
 public:
 	BaseModel(std::string);
